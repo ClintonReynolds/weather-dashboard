@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import weatherService from '../../service/weatherService';
+import weatherService from '../../service/weatherService.';
 const router = Router();
 
 import HistoryService from '../../service/historyService.js';
