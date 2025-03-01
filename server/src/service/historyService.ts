@@ -1,4 +1,6 @@
 import fs from 'fs/promises';
+//import path from 'path';
+//import { fileURLToPath } from 'url';
 // TODO: Define a City class with name and id properties
 class City {
   constructor(public id: string, public name: string) {}
