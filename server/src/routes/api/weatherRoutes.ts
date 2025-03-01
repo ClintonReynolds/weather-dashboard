@@ -11,14 +11,16 @@ router.post('/', async (req, res) => {
   try {
     const cityName = req.body.cityName;
     const data = await WeatherService.getWeatherForCity(cityName);
-    const weatherData = { currentWeather: data.currentWeather, ...data.forecast };
-    await HistoryService.addCity(cityName);
-    // TODO: save city to search history
-    return res.status(200).json(weatherData);
+    if (!data || !data.currentWeather || !data.forecastArray) {
+      throw new Error('Invalid weather data received');
+    }
 
+    const weatherData = [data.currentWeather, ...data.forecastArray];
+    await HistoryService.addCity(cityName);
+    return res.json(weatherData);
     
-  }catch(error) {
-   return res.json('Failed to fetch weather data');
+  } catch (error) {
+    return res.json('Failed to fetch weather data');
   }
 });
 
@@ -34,10 +36,10 @@ try {
 });
 
 // * BONUS TODO: DELETE city from search history
-router.delete('/history/:id', async (req, res) => {
-  const id = req.params.id;
+router.delete('/history/:id', async (_req, res) => {
+  const id = _req.params.id;
   await HistoryService.removeCity(id);
-  res.status(202).send();
+  res.status(204).send();
 });
 
 export default router;
