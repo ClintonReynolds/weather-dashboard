@@ -79,12 +79,12 @@ class WeatherService {
   // TODO: Create buildGeocodeQuery method
   // private buildGeocodeQuery(): string {}
   private buildGeocodeQuery(cityName: string): string {
-    return `${this.baseURL}/geo/1.0/direct?q=${cityName}&limit=1&appid=${this.apiKey}`;
+    return `${this.baseURL}/geo/1.0/direct?q=${cityName}&limit=1&units=imperial&appid=${this.apiKey}`;
   }
   // TODO: Create buildWeatherQuery method
   // private buildWeatherQuery(coordinates: Coordinates): string {}
   private buildWeatherQuery(coordinates: Coordinates): string {
-    return `${this.baseURL}/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.apiKey}`;
+    return `${this.baseURL}/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${this.apiKey}`;
   }
   // TODO: Create fetchAndDestructureLocationData method
   // private async fetchAndDestructureLocationData() {}
